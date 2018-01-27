@@ -5,6 +5,14 @@
  * and open the template in the editor.
  */
 
+function convertir_utf8($file_content){
+    if(preg_match('/./u', $file_content)){
+        return $file_content;
+    }else{
+        return utf8_encode($file_content);
+    }
+}
+
 function unzip_file($file, $destination) {
 // Créer l'objet (PHP 5 >= 5.2)
 $zip = new ZipArchive() ;

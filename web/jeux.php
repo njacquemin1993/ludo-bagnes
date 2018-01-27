@@ -11,9 +11,10 @@
 		<?php include("header.php"); ?>
 		
 		<div id="bloc_page"> <!-- ensemble de la page -->
-				<iframe src="/webludo/pages/locations.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="200"></iframe>
-				<iframe src="/webludo/pages/jeux.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="1100"></iframe>
-		</div>
+		    <iframe src="/webludo/pages/locations.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="200"></iframe>
+		    <iframe src="/webludo/pages/jeux.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+                </div>
+
 		<?php include("footer.php"); ?>
 		
 	</body>

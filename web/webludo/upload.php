@@ -36,7 +36,7 @@ if(unzip_file($dossierTransfert."/".$fichierZip, $dossierTemp)==false){
 // -- utilisation du fichier delete.sql
 if(file_exists($dossierTemp."/delete.sql")){
     // faire les suppressions en premier
-    $SQL_delete = file_get_contents($dossierTemp."/delete.sql");
+    $SQL_delete = convertir_utf8(file_get_contents($dossierTemp."/delete.sql"));
     $connection->query($SQL_delete);
     echo "Execution delete.sql ==> OK</BR>";
 }
@@ -44,7 +44,7 @@ if(file_exists($dossierTemp."/delete.sql")){
 // -- utilisation du fichier upadate.sql
 if(file_exists($dossierTemp."/update.sql")==true){
 
-    $SQL_update = file_get_contents($dossierTemp."/update.sql");
+    $SQL_update = convertir_utf8(file_get_contents($dossierTemp."/update.sql"));
    // echo $SQL_update;    
     $nb = $connection->query($SQL_update);
     echo "Execution update.sql ==> OK</BR>";
@@ -52,7 +52,7 @@ if(file_exists($dossierTemp."/update.sql")==true){
 
 // -- utilisation du fichier locations.sql
 if(file_exists($dossierTemp."/locations.sql")!=false){
-    $SQL_locations = file_get_contents($dossierTemp."/locations.sql");
+    $SQL_locations = convertir_utf8(file_get_contents($dossierTemp."/locations.sql"));
    // echo $SQL_update;    
     $nb = $connection->query($SQL_locations);
     echo "Execution locations.sql ==> OK</BR>";

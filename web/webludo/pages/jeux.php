@@ -78,7 +78,7 @@ echo $pagination."</br>";
 	<tr>
 	    <th>Numéro</th>
 	    <th>Nom du jeu</th>
-	     <th>Catégorie</th>
+	    <th>Catégorie</th>
 	</tr>
     </thead>
     <tbody>
@@ -89,8 +89,7 @@ echo $pagination."</br>";
 		    <input type="text" name="SAI_recherche" value="<?php echo $recherche ?>" />
 		    <input type="submit" value="Rechercher " name="BTN_recherche" />
 		       &nbsp; &nbsp;&nbsp; <a href='jeux.php'>Annuler le filtre</a>
-	    </form>
-		
+	        </form>
 	    </td>
 	</tr>
 <?php
@@ -99,9 +98,9 @@ while( $enregistrement = $select->fetch() )
   // Affichage des jeux en table  : numero / nom / editeur / prix location 
     
     echo "<tr>"; 
-	echo utf8_encode("<td width='45px'><a href='jeux.php?fiche=".urlencode($enregistrement->Numero_jeu)."&p=$p&SAI_recherche=".urlencode($recherche)."'>".$enregistrement->Numero_jeu."</a></td>");
-	echo utf8_encode("<td align='left'>".$enregistrement->Nom_jeu."</td>");
-	echo utf8_encode("<td align='left' width='20%'>".$enregistrement->Categorie."</td>\n");
+	echo ("<td width='45px'><a href='jeux.php?fiche=".urlencode($enregistrement->Numero_jeu)."&p=$p&SAI_recherche=".urlencode($recherche)."'>".$enregistrement->Numero_jeu."</a></td>");
+	echo ("<td align='left'>".$enregistrement->Nom_jeu."</td>");
+	echo ("<td align='left' width='20%'>".$enregistrement->Categorie."</td>\n");
     
     echo "</tr>"; 
 
@@ -132,12 +131,12 @@ echo $pagination."</br>";
 ?>
     </br>
     
-    <table width='100%'>
+    <table width='99%'>
 	    
     <thead>
 	<tr>
 	    <th colspan="2">
-		<?php echo utf8_encode($enregistrement->Nom_jeu); ?>  
+		<?php echo ($enregistrement->Nom_jeu); ?>  
 	    </th>
 	</tr>
     </thead>
@@ -150,34 +149,34 @@ echo $pagination."</br>";
 	    </td>
 	</tr>	
 	<tr>
-	    <td width="20%">
+	    <td width="15%">
 		Numéro  : 
 	    </td>
 	    <td align="left">
-		<strong><?php echo utf8_encode($enregistrement->Numero_jeu); ?></strong>
+		<strong><?php echo ($enregistrement->Numero_jeu); ?></strong>
 	    </td>
 	</tr>
 	<tr>
-	    <td width="20%">
+	    <td>
 		Nom  : 
 	    </td>
 	    <td align="left">
-		<strong><?php echo utf8_encode($enregistrement->Nom_jeu); ?></strong>
+		<strong><?php echo ($enregistrement->Nom_jeu); ?></strong>
 	    </td>
 	</tr>	
 	
 	<tr>
-	    <td width="20%">
+	    <td>
 		Editeur  : 
 	    </td>
 	    <td align="left">
-		<?php echo utf8_encode($enregistrement->Editeur);  ?>
+		<?php echo ($enregistrement->Editeur);  ?>
 	    </td>
 	</tr>
 	
 	
 	<tr>
-	    <td width="20%">
+	    <td>
 		Prix de location  : 
 	    </td>
 	    <td align="left">
@@ -186,7 +185,7 @@ echo $pagination."</br>";
 	</tr>
 
 	<tr>
-	    <td width="20%">
+	    <td>
 		Prix caution  : 
 	    </td>
 	    <td align="left">
@@ -195,16 +194,16 @@ echo $pagination."</br>";
 	</tr>
 	
 	<tr>
-	    <td width="20%">
+	    <td>
 		Catégorie  : 
 	    </td>
 	    <td align="left">
-		<?php echo utf8_encode($enregistrement->Categorie); ?>
+		<?php echo ($enregistrement->Categorie); ?>
 	    </td>
 	</tr>
 	
 	<tr>
-	    <td width="20%">
+	    <td>
 		Age conseillé  : 
 	    </td>
 	    <td align="left">
@@ -213,42 +212,37 @@ echo $pagination."</br>";
 	</tr>
 	
 		<tr>
-	    <td width="20%" valign='top'>
+	    <td valign='top'>
 		Résumé : 
 	    </td>
 	    <td align="left">
-		<?php echo nl2br(utf8_encode($enregistrement->Resume)); ?>
+		<?php echo nl2br(wordwrap($enregistrement->Resume, 125)); ?>
 	    </td>
 	</tr>	
 	<tr>
-	    <td width="20%" valign='top'>
+	    <td valign='top'>
 		Contenu : 
 	    </td>
 	    <td align="left">
-		<?php echo nl2br(utf8_encode($enregistrement->Contenu)); ?>
+		<?php echo nl2br(wordwrap($enregistrement->Contenu, 125)); ?>
 	    </td>
 	</tr>	
 	
 	
 	<tr>
-	    <td width="20%" valign='top'>
+	    <td valign='top'>
 		Image : 
-	    </td>    <td align='center' >
+	    </td>    
+            <td align='center' >
 	
 		
 		<?php
 		$image = "../".$dossierImages."/".trim($enregistrement->Numero_jeu).".jpg"; 
-		if(file_exists($image)){
-		    
-			echo "<img src='$image'>"; 
-		    
+		if(file_exists($image)) {
+                    echo "<img style='max-width: 100%' src='$image'>"; 
 		}else{
-		    
-		  		echo "<img src='../img_non_dispo.jpg'>"; 
-			
-		}
-		
-		
+                    echo "<img src='../img_non_dispo.jpg'>";
+                }
 		?>
 
 	    </td>
@@ -265,7 +259,7 @@ echo $pagination."</br>";
 	$date_retour = explode("-",$locations->Date_retour);
 	?>
 	<tr>
-	    <td width="20%" valign='top'>
+	    <td>
 		Location  : 
 	    </td>
 	    <td align="left">
