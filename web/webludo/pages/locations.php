@@ -60,12 +60,13 @@ $email = $_POST['SAI_email'];
 	}else{
 	    
     //-- création et envoi du courrier avec les locations en cours --
-	    
-	$sql="SELECT  * FROM locations WHERE Email LIKE'%".$email."%' ORDER BY Numero_jeu";
-	
-	$sth = $connection->prepare($sql);
-	$sth->execute();
-	$result = $sth->fetchAll();
+
+        $sql = $connection->prepare("SELECT  * FROM locations WHERE Email LIKE :email ORDER BY Numero_jeu"); 
+        $sql->execute(array(':email' => "%".$email."%"));
+        $sql->setFetchMode(PDO::FETCH_OBJ);
+
+
+	$result = $sql->fetchAll();
 	if(empty($result)){
 	    // -- pas de jeux en location --
 	    

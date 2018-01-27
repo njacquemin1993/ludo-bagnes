@@ -25,15 +25,17 @@ if($fiche==""){
 // -- afichage de la liste des jeux -- 
 
 if($recherche !=""){
-    $filtre=" WHERE Nom_jeu LIKE '%$recherche%' OR Numero_jeu='$recherche'"; 
+    $filtre=""; 
 }else{
     $filtre = "";
 }
 
 // -- nombre total des jeux ---
-$total = $connection->query("SELECT COUNT(*)AS Total_Jeux FROM jeux".$filtre );
-$total->setFetchMode(PDO::FETCH_OBJ);
-$maxJeux = $total->fetch();
+$sql = $connection->prepare("SELECT COUNT(*)AS Total_Jeux FROM jeux WHERE Nom_jeu LIKE :recherche OR Numero_jeu = :numero "); 
+$sql->execute(array(':recherche' => "%".$recherche."%", ':numero' => $recherche));
+$sql->setFetchMode(PDO::FETCH_OBJ);
+
+$maxJeux = $sql->fetch();
 $totalJeux = $maxJeux->Total_Jeux;
 $epp = 15; // nombre de jeux  à afficher par page (entries per page)
 $nbPages = ceil($totalJeux/$epp); // calcul du nombre de pages $nbPages (on arrondit à l'entier supérieur avec la fonction ceil())
@@ -60,12 +62,9 @@ if (isset($_GET['p']) && is_numeric($_GET['p'])) {
 // $start est la valeur de départ du LIMIT dans notre requête SQL (dépend de la page courante)
 $start = ($current * $epp - $epp);
 
-$sql = "SELECT Numero_jeu, Nom_jeu,Categorie FROM jeux".$filtre." ORDER BY Numero_jeu LIMIT $start, $epp"; 
-
-// On envois la requete
-$select = $connection->query($sql);
-$select->setFetchMode(PDO::FETCH_OBJ);
-
+$sql = $connection->prepare("SELECT Numero_jeu, Nom_jeu,Categorie FROM jeux WHERE Nom_jeu LIKE :recherche OR Numero_jeu = :numero ORDER BY Numero_jeu LIMIT $start, $epp"); 
+$sql->execute(array(':recherche' => "%".$recherche."%", ':numero' => $recherche));
+$sql->setFetchMode(PDO::FETCH_OBJ);
 
 $pagination =  paginate('jeux.php', '?p=', $nbPages, $current,$recherche); 
 
@@ -93,7 +92,7 @@ echo $pagination."</br>";
 	    </td>
 	</tr>
 <?php
-while( $enregistrement = $select->fetch() )
+while( $enregistrement = $sql->fetch() )
 {
   // Affichage des jeux en table  : numero / nom / editeur / prix location 
     
@@ -116,14 +115,11 @@ echo $pagination."</br>";
 }else{
 
     // -- afficher la fiche du  jeu --
-    
-    $sql ="SELECT * FROM jeux WHERE Numero_jeu='$fiche'"; 
  
-    
-    
-    $select = $connection->query($sql);
-    $select->setFetchMode(PDO::FETCH_OBJ);
-    $enregistrement = $select->fetch() ;
+    $sql = $connection->prepare("SELECT * FROM jeux WHERE Numero_jeu=:num_jeu"); 
+    $sql->execute(array(':num_jeu' => $fiche));
+    $sql->setFetchMode(PDO::FETCH_OBJ);
+    $enregistrement = $sql->fetch() ;
   
     $lienRetour = "[ <a href='jeux.php?p=".$p."&SAI_recherche=".$recherche."'>retour à la liste des jeux</a> ]"; 
     
@@ -251,11 +247,11 @@ echo $pagination."</br>";
 	
 	<?php
 	    
-	$sql = "SELECT Date_retour FROM locations WHERE Numero_jeu='".$enregistrement->Numero_jeu."'";
-	
-	$select = $connection->query($sql);
-	$select->setFetchMode(PDO::FETCH_OBJ);
-	$locations = $select->fetch() ;
+        $sql = $connection->prepare("SELECT Date_retour FROM locations WHERE Numero_jeu=:num_jeu"); 
+        $sql->execute(array(':num_jeu' => $enregistrement->Numero_jeu));
+        $sql->setFetchMode(PDO::FETCH_OBJ);
+
+	$locations = $sql->fetch() ;
 	$date_retour = explode("-",$locations->Date_retour);
 	?>
 	<tr>
