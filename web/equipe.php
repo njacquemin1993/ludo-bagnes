@@ -18,7 +18,7 @@
 	  
 	 	 <div id ="images"> <!-- ajout de figures avec la légende correspondante -->
 				<figure>
-					<img src="images/La_responsable.JPG" width="128" height="192" alt="La responsable" title="La responsable"><br />
+					<img src="images/La_responsable.jpg" width="128" height="192" alt="La responsable" title="La responsable"><br />
 					<figcaption>La responsable,<br /> Christelle Giroud</figcaption>
 				</figure>
 				<figure>
@@ -26,7 +26,7 @@
 					<figcaption>Les aides de la ludo</figcaption>
 				</figure>
 		  		 <figure>
-					<img src="images/Christine.png" width="90" height="154.3" alt="Christine" title="Christine"><br />
+					<img src="images/Christine.jpg" width="90" height="154.3" alt="Christine" title="Christine"><br />
 				   <figcaption>Christine</figcaption>
 				</figure>
 		 </div>
