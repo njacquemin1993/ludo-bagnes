@@ -21,7 +21,7 @@ allowTransparency="true"></iframe>
 					<li><a href="jeux.php">Nos Jeux</a></li>
 				</ul>
 			</nav>
-   <div class=bandeau> Notre prochaine manifestation: <a href="manifestations.php">Les 10 ans de la Ludothèque au printemps!</a></div>
+   <div class=bandeau> Nouveau! Location de costumes pour Carnaval, pour les membres et non-membres! <a href="manifestations.php">Plus d'infos</a></div>
 			
 
 			

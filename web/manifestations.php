@@ -15,9 +15,34 @@
 			<h2>Nos Manifestations</h2>
 		
 		  <p/>
+		  <p>A l'occasion de Carnaval, vous pouvez venir louer des costumes pour vos enfants!<br/>
+			Tarifs: <ol> 
+		  <li>gratuit pour les membres ayant un abonnement à 80.-</li>
+		  <li> 5.- pour les membres ayant un abonnement à 25.-</li>
+		  <li>10.- pour les non-membres</li>
+				</ol>
 		  
-		  <p> Notre ludothèque fêtera ses 10 ans au printemps 2018! Une fête sera organisée!<br/>
-			Plus d'infos à venir...
+		  <div id ="images"> <!-- ajout de figures avec la légende correspondante -->
+				<figure>
+					<img src="images/Princesses.jpg" width="384" height="256" alt="Princesses" title="Princesses"><br />
+					<figcaption> Les princesses</figcaption>
+				</figure>
+				<figure>
+					<img src="images/Animaux.jpg" width="384" height="256" alt="Animaux" title="Animaux">
+					<figcaption>Les Animaux</figcaption>
+				</figure>
+		  		 <figure>
+					<img src="images/Heros.jpg" width="384" height="256" alt="Heros" title="Heros"><br />
+				   <figcaption>Les super héros</figcaption>
+				</figure>
+			    <figure>
+					<img src="images/Adulte.jpg" width="384" height="256" alt="Adulte" title="Adulte"><br />
+				   <figcaption>Pour les plus grands</figcaption>
+				</figure>
+		 </div>
+		  
+		  <p> Notre ludothèque fêtera ses 10 ans le Samedi 28 Avril 2018 à l'Ecole de Villette<br/>
+			Plus d'infos à venir... Réservez déjà la date!
 			<p/>
 		  
 		  
